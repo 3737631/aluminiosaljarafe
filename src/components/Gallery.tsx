@@ -25,11 +25,11 @@ export default function Gallery() {
   const [selected, setSelected] = useState<number | null>(null)
 
   return (
-    <section id="galeria" ref={ref} className="py-28 bg-white relative overflow-hidden">
+    <section id="galeria" ref={ref} className="py-20 bg-white relative overflow-hidden">
       <div className="absolute -bottom-40 -left-40 w-[500px] h-[500px] rounded-full opacity-[0.025]" style={{ background: 'radial-gradient(circle, #F59E0B, transparent)' }} />
 
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <motion.div initial={{ opacity: 0, y: 30 }} animate={inView ? { opacity: 1, y: 0 } : {}} transition={{ duration: 0.7 }} className="text-center mb-16">
+        <motion.div initial={{ opacity: 0, y: 30 }} animate={inView ? { opacity: 1, y: 0 } : {}} transition={{ duration: 0.7 }} className="text-center mb-12">
           <motion.span initial={{ scale: 0 }} animate={inView ? { scale: 1 } : {}} transition={{ type: 'spring', stiffness: 200 }} className="section-badge">
             <HiPhotograph className="w-3.5 h-3.5" />
             Galería

@@ -36,11 +36,11 @@ export default function Contact() {
   }
 
   return (
-    <section id="contacto" ref={ref} className="py-28 relative overflow-hidden" style={{ background: 'linear-gradient(135deg, #1F2937 0%, #111827 50%, #1F2937 100%)' }}>
+    <section id="contacto" ref={ref} className="py-20 relative overflow-hidden" style={{ background: 'linear-gradient(135deg, #1F2937 0%, #111827 50%, #1F2937 100%)' }}>
       <div className="absolute inset-0 opacity-[0.04]" style={{ backgroundImage: 'radial-gradient(circle at 30% 80%, #F59E0B 0%, transparent 50%), radial-gradient(circle at 70% 20%, #F59E0B 0%, transparent 50%)' }} />
 
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative">
-        <motion.div initial={{ opacity: 0, y: 30 }} animate={inView ? { opacity: 1, y: 0 } : {}} transition={{ duration: 0.7 }} className="text-center mb-16">
+        <motion.div initial={{ opacity: 0, y: 30 }} animate={inView ? { opacity: 1, y: 0 } : {}} transition={{ duration: 0.7 }} className="text-center mb-12">
           <motion.span initial={{ scale: 0 }} animate={inView ? { scale: 1 } : {}} transition={{ type: 'spring', stiffness: 200 }} className="section-badge">
             <HiChatAlt2 className="w-3.5 h-3.5" />
             Contacto

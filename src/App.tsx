@@ -4,7 +4,6 @@ import Services from './components/Services'
 import Comments from './components/Comments'
 import Process from './components/Process'
 import Benefits from './components/Benefits'
-import Testimonials from './components/Testimonials'
 import Gallery from './components/Gallery'
 import FAQ from './components/FAQ'
 import Contact from './components/Contact'
@@ -20,7 +19,6 @@ export default function App() {
       <Comments />
       <Process />
       <Benefits />
-      <Testimonials />
       <Gallery />
       <FAQ />
       <Contact />

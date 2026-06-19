@@ -21,11 +21,11 @@ export default function FAQ() {
   const toggle = (index: number) => setOpenIndex(openIndex === index ? null : index)
 
   return (
-    <section ref={ref} className="py-28 relative overflow-hidden" style={{ background: 'linear-gradient(180deg, #F8FAFC 0%, #FFFFFF 100%)' }}>
+    <section ref={ref} className="py-20 relative overflow-hidden" style={{ background: 'linear-gradient(180deg, #F8FAFC 0%, #FFFFFF 100%)' }}>
       <div className="absolute top-0 right-0 w-[400px] h-[400px] rounded-full opacity-[0.025]" style={{ background: 'radial-gradient(circle, #F59E0B, transparent)' }} />
 
       <div className="max-w-3xl mx-auto px-4 sm:px-6 lg:px-8">
-        <motion.div initial={{ opacity: 0, y: 30 }} animate={inView ? { opacity: 1, y: 0 } : {}} transition={{ duration: 0.7 }} className="text-center mb-16">
+        <motion.div initial={{ opacity: 0, y: 30 }} animate={inView ? { opacity: 1, y: 0 } : {}} transition={{ duration: 0.7 }} className="text-center mb-12">
           <motion.span initial={{ scale: 0 }} animate={inView ? { scale: 1 } : {}} transition={{ type: 'spring', stiffness: 200 }} className="section-badge">
             <HiQuestionMarkCircle className="w-3.5 h-3.5" />
             FAQ

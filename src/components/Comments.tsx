@@ -1,6 +1,6 @@
 import { motion } from 'framer-motion'
 import { useInView } from 'react-intersection-observer'
-import { HiStar, HiThumbUp, HiChat, HiCalendar } from 'react-icons/hi'
+import { HiStar, HiChat, HiCalendar } from 'react-icons/hi'
 
 const COMMENTS = [
   {
@@ -67,7 +67,7 @@ export default function Comments() {
   const [ref, inView] = useInView({ triggerOnce: true, threshold: 0.1 })
 
   return (
-    <section id="comentarios" ref={ref} className="py-28 relative overflow-hidden">
+    <section id="comentarios" ref={ref} className="py-20 relative overflow-hidden">
       <div className="absolute inset-0" style={{ background: 'linear-gradient(180deg, #F8FAFC 0%, #FFFFFF 50%, #F8FAFC 100%)' }} />
       <div className="absolute top-0 left-1/2 -translate-x-1/2 w-[800px] h-[800px] rounded-full opacity-[0.025]" style={{ background: 'radial-gradient(circle, #F59E0B 0%, transparent 70%)' }} />
 
@@ -76,7 +76,7 @@ export default function Comments() {
           initial={{ opacity: 0, y: 30 }}
           animate={inView ? { opacity: 1, y: 0 } : {}}
           transition={{ duration: 0.7 }}
-          className="text-center mb-16"
+          className="text-center mb-10"
         >
           <motion.span initial={{ scale: 0 }} animate={inView ? { scale: 1 } : {}} transition={{ type: 'spring', stiffness: 200 }} className="section-badge">
             <HiChat className="w-3.5 h-3.5" />
@@ -86,57 +86,54 @@ export default function Comments() {
           <p className="section-subtitle">La satisfacción de quienes confían en nosotros es nuestro mejor aval. Cada proyecto es una nueva historia que contar.</p>
         </motion.div>
 
-        <motion.div variants={containerVariants} initial="hidden" animate={inView ? 'visible' : 'hidden'} className="grid sm:grid-cols-2 lg:grid-cols-3 gap-5">
+        <motion.div variants={containerVariants} initial="hidden" animate={inView ? 'visible' : 'hidden'} className="grid sm:grid-cols-2 lg:grid-cols-3 gap-4">
           {COMMENTS.map((comment, idx) => (
-            <motion.div key={comment.name + idx} variants={cardVariants} whileHover={{ y: -5, transition: { duration: 0.3 } }} className="premium-card">
-              <div className="p-6">
-                <div className="flex items-center justify-between mb-4">
+            <motion.div key={comment.name + idx} variants={cardVariants} whileHover={{ y: -3, transition: { duration: 0.3 } }} className="premium-card">
+              <div className="p-5">
+                <div className="flex items-center justify-between mb-3">
                   <div className="flex gap-0.5">
                     {[...Array(5)].map((_, i) => (
-                      <HiStar key={i} className={`w-3.5 h-3.5 ${i < comment.rating ? 'text-accent' : 'text-gray-200'}`} />
+                      <HiStar key={i} className={`w-3 h-3 ${i < comment.rating ? 'text-accent' : 'text-gray-200'}`} />
                     ))}
                   </div>
-                  <span className="inline-flex items-center gap-1.5 text-[10px] font-medium text-secondary/40 uppercase tracking-wider">
-                    <HiCalendar className="w-3 h-3" />
+                  <span className="inline-flex items-center gap-1.5 text-[9px] font-medium text-secondary/40 uppercase tracking-wider">
+                    <HiCalendar className="w-2.5 h-2.5" />
                     {comment.date}
                   </span>
                 </div>
 
-                <blockquote className="relative mb-4">
-                  <p className="text-secondary/70 text-sm leading-relaxed italic pl-4 border-l-2 border-accent/15">
+                <blockquote className="relative mb-3">
+                  <p className="text-secondary/65 text-xs leading-relaxed italic pl-3 border-l-2 border-accent/15">
                     &ldquo;{comment.text}&rdquo;
                   </p>
                 </blockquote>
 
-                <div className="flex items-center gap-3 pt-3 border-t border-gray-50">
-                  <div className="w-9 h-9 rounded-full flex items-center justify-center text-sm font-bold text-white flex-shrink-0" style={{ background: 'linear-gradient(135deg, #1F2937, #374151)' }}>
+                <div className="flex items-center gap-2.5 pt-2.5 border-t border-gray-50">
+                  <div className="w-8 h-8 rounded-full flex items-center justify-center text-xs font-bold text-white flex-shrink-0" style={{ background: 'linear-gradient(135deg, #1F2937, #374151)' }}>
                     {comment.name.charAt(0)}
                   </div>
                   <div className="flex-1 min-w-0">
-                    <p className="font-heading font-semibold text-primary text-sm truncate">{comment.name}</p>
-                    <p className="text-[11px] text-secondary/40 tracking-wide">{comment.location}</p>
+                    <p className="font-heading font-semibold text-primary text-xs truncate">{comment.name}</p>
+                    <p className="text-[10px] text-secondary/40 tracking-wide">{comment.location}</p>
                   </div>
-                  <motion.div whileHover={{ scale: 1.15 }} className="flex items-center gap-1 text-accent/30 cursor-default">
-                    <HiThumbUp className="w-3.5 h-3.5" />
-                  </motion.div>
                 </div>
               </div>
-              <div className="px-6 py-2.5 border-t border-gray-50/80" style={{ background: 'linear-gradient(135deg, rgba(245,158,11,0.03), transparent)' }}>
-                <span className="text-[10px] font-semibold uppercase tracking-[0.15em] text-accent/60">{comment.service}</span>
+              <div className="px-5 py-2 border-t border-gray-50/80" style={{ background: 'linear-gradient(135deg, rgba(245,158,11,0.03), transparent)' }}>
+                <span className="text-[9px] font-semibold uppercase tracking-[0.15em] text-accent/60">{comment.service}</span>
               </div>
             </motion.div>
           ))}
         </motion.div>
 
         <motion.div
-          initial={{ opacity: 0, y: 16 }}
+          initial={{ opacity: 0, y: 12 }}
           animate={inView ? { opacity: 1, y: 0 } : {}}
           transition={{ delay: 0.8 }}
-          className="mt-14 text-center"
+          className="mt-10 text-center"
         >
           <motion.div
             whileHover={{ scale: 1.015 }}
-            className="inline-flex items-center gap-5 px-8 py-5 rounded-2xl"
+            className="inline-flex items-center gap-4 px-6 py-4 rounded-2xl"
             style={{
               background: 'linear-gradient(135deg, rgba(245,158,11,0.05), rgba(245,158,11,0.015))',
               border: '1.5px solid rgba(245,158,11,0.12)',
@@ -150,7 +147,7 @@ export default function Comments() {
               ))}
             </div>
             <div className="text-left">
-              <p className="heading-md text-primary text-lg">4.8 sobre 5</p>
+              <p className="heading-md text-primary text-base">4.8 sobre 5</p>
               <p className="body-sm">Basado en 18 opiniones verificadas</p>
             </div>
           </motion.div>

@@ -29,7 +29,7 @@ export default function Services() {
   const [ref, inView] = useInView({ triggerOnce: true, threshold: 0.1 })
 
   return (
-    <section id="servicios" ref={ref} className="py-28 bg-white relative overflow-hidden">
+    <section id="servicios" ref={ref} className="py-20 bg-white relative overflow-hidden">
       <div className="absolute top-0 right-0 w-[600px] h-[600px] rounded-full opacity-[0.03] -translate-y-1/2 translate-x-1/3" style={{ background: 'radial-gradient(circle, #F59E0B, transparent)' }} />
       <div className="absolute bottom-0 left-0 w-[400px] h-[400px] rounded-full opacity-[0.02] translate-y-1/2 -translate-x-1/4" style={{ background: 'radial-gradient(circle, #F59E0B, transparent)' }} />
 
@@ -38,7 +38,7 @@ export default function Services() {
           initial={{ opacity: 0, y: 30 }}
           animate={inView ? { opacity: 1, y: 0 } : {}}
           transition={{ duration: 0.7 }}
-          className="text-center mb-16"
+          className="text-center mb-12"
         >
           <motion.span initial={{ scale: 0 }} animate={inView ? { scale: 1 } : {}} transition={{ type: 'spring', stiffness: 200 }} className="section-badge">
             Servicios
