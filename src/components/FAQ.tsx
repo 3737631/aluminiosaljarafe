@@ -22,25 +22,15 @@ export default function FAQ() {
 
   return (
     <section ref={ref} className="py-28 relative overflow-hidden" style={{ background: 'linear-gradient(180deg, #F8FAFC 0%, #FFFFFF 100%)' }}>
-      <div className="absolute top-0 right-0 w-[400px] h-[400px] rounded-full opacity-[0.03]" style={{ background: 'radial-gradient(circle, #F59E0B, transparent)' }} />
+      <div className="absolute top-0 right-0 w-[400px] h-[400px] rounded-full opacity-[0.025]" style={{ background: 'radial-gradient(circle, #F59E0B, transparent)' }} />
 
       <div className="max-w-3xl mx-auto px-4 sm:px-6 lg:px-8">
-        <motion.div
-          initial={{ opacity: 0, y: 40 }}
-          animate={inView ? { opacity: 1, y: 0 } : {}}
-          transition={{ duration: 0.7 }}
-          className="text-center mb-16"
-        >
-          <motion.span
-            initial={{ scale: 0 }}
-            animate={inView ? { scale: 1 } : {}}
-            transition={{ type: 'spring', stiffness: 200 }}
-            className="badge-premium"
-          >
+        <motion.div initial={{ opacity: 0, y: 30 }} animate={inView ? { opacity: 1, y: 0 } : {}} transition={{ duration: 0.7 }} className="text-center mb-16">
+          <motion.span initial={{ scale: 0 }} animate={inView ? { scale: 1 } : {}} transition={{ type: 'spring', stiffness: 200 }} className="section-badge">
             <HiQuestionMarkCircle className="w-3.5 h-3.5" />
             FAQ
           </motion.span>
-          <h2 className="section-title mt-4">Preguntas frecuentes</h2>
+          <h2 className="section-title">Preguntas frecuentes</h2>
           <p className="section-subtitle">Resolvemos tus dudas sobre nuestros servicios de carpintería metálica y aluminio.</p>
         </motion.div>
 
@@ -48,37 +38,23 @@ export default function FAQ() {
           {FAQS.map((faq, index) => (
             <motion.div
               key={index}
-              initial={{ opacity: 0, y: 20 }}
+              initial={{ opacity: 0, y: 16 }}
               animate={inView ? { opacity: 1, y: 0 } : {}}
-              transition={{ duration: 0.4, delay: index * 0.05 }}
+              transition={{ duration: 0.4, delay: index * 0.04 }}
               className="premium-card overflow-hidden"
             >
-              <button
-                onClick={() => toggle(index)}
-                className="w-full flex items-center justify-between p-5 text-left"
-              >
-                <span className="font-heading font-semibold text-primary text-sm md:text-base pr-4">{faq.q}</span>
-                <motion.div
-                  animate={{ rotate: openIndex === index ? 180 : 0 }}
-                  transition={{ duration: 0.3 }}
-                  className="w-8 h-8 rounded-lg flex items-center justify-center flex-shrink-0"
-                  style={{ background: 'linear-gradient(135deg, rgba(245,158,11,0.1), rgba(245,158,11,0.03))' }}
-                >
+              <button onClick={() => toggle(index)} className="w-full flex items-center justify-between p-5 text-left">
+                <span className="font-heading font-semibold text-primary text-sm md:text-[15px] pr-4 tracking-tight">{faq.q}</span>
+                <motion.div animate={{ rotate: openIndex === index ? 180 : 0 }} transition={{ duration: 0.3 }} className="w-8 h-8 rounded-lg flex items-center justify-center flex-shrink-0" style={{ background: 'linear-gradient(135deg, rgba(245,158,11,0.08), rgba(245,158,11,0.02))' }}>
                   <HiChevronDown className="w-4 h-4 text-accent" />
                 </motion.div>
               </button>
               <AnimatePresence>
                 {openIndex === index && (
-                  <motion.div
-                    initial={{ height: 0, opacity: 0 }}
-                    animate={{ height: 'auto', opacity: 1 }}
-                    exit={{ height: 0, opacity: 0 }}
-                    transition={{ duration: 0.3, ease: 'easeInOut' }}
-                    className="overflow-hidden"
-                  >
+                  <motion.div initial={{ height: 0, opacity: 0 }} animate={{ height: 'auto', opacity: 1 }} exit={{ height: 0, opacity: 0 }} transition={{ duration: 0.3, ease: 'easeInOut' }} className="overflow-hidden">
                     <div className="px-5 pb-5">
-                      <div className="h-px w-full mb-4" style={{ background: 'linear-gradient(90deg, rgba(245,158,11,0.2), transparent)' }} />
-                      <p className="text-secondary/65 text-sm leading-relaxed">{faq.a}</p>
+                      <div className="h-px w-full mb-4" style={{ background: 'linear-gradient(90deg, rgba(245,158,11,0.15), transparent)' }} />
+                      <p className="body-sm">{faq.a}</p>
                     </div>
                   </motion.div>
                 )}
@@ -87,14 +63,9 @@ export default function FAQ() {
           ))}
         </div>
 
-        <motion.div
-          initial={{ opacity: 0, y: 20 }}
-          animate={inView ? { opacity: 1, y: 0 } : {}}
-          transition={{ delay: 0.8 }}
-          className="text-center mt-10"
-        >
-          <p className="text-secondary/60 mb-4">¿No encuentras lo que buscas?</p>
-          <motion.a href="#contacto" className="btn-primary" whileHover={{ scale: 1.03 }} whileTap={{ scale: 0.97 }}>Contactar ahora</motion.a>
+        <motion.div initial={{ opacity: 0, y: 16 }} animate={inView ? { opacity: 1, y: 0 } : {}} transition={{ delay: 0.8 }} className="text-center mt-10">
+          <p className="text-secondary/50 text-sm mb-4">¿No encuentras lo que buscas?</p>
+          <motion.a href="#contacto" className="btn-primary" whileHover={{ scale: 1.02 }} whileTap={{ scale: 0.98 }}>Contactar ahora</motion.a>
         </motion.div>
       </div>
     </section>

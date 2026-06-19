@@ -1,5 +1,6 @@
 import { motion } from 'framer-motion'
 import { useInView } from 'react-intersection-observer'
+import { HiLocationMarker } from 'react-icons/hi'
 
 const BUSINESS = {
   name: "Aluminios Aljarafe",
@@ -12,14 +13,14 @@ export default function MapSection() {
   return (
     <section ref={ref} className="bg-light relative">
       <motion.div
-        initial={{ opacity: 0, y: 30 }}
+        initial={{ opacity: 0, y: 20 }}
         animate={inView ? { opacity: 1, y: 0 } : {}}
         transition={{ duration: 0.6 }}
         className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 pt-12 pb-6 text-center"
       >
-        <span className="text-accent font-semibold text-sm uppercase tracking-widest">Ubicación</span>
-        <h2 className="font-heading text-2xl md:text-3xl font-bold text-primary mt-2">Encuéntranos</h2>
-        <p className="text-secondary/70 mt-1">{BUSINESS.address}</p>
+        <span className="section-badge mx-auto"><HiLocationMarker className="w-3.5 h-3.5" />Ubicación</span>
+        <h2 className="font-heading text-2xl md:text-3xl font-bold text-primary mt-2 tracking-tight">Encuéntranos</h2>
+        <p className="text-secondary/60 text-sm mt-1">{BUSINESS.address}</p>
       </motion.div>
       <div className="w-full h-[400px]">
         <iframe

@@ -17,11 +17,11 @@ const SERVICES = [
 
 const containerVariants = {
   hidden: { opacity: 0 },
-  visible: { opacity: 1, transition: { staggerChildren: 0.06 } },
+  visible: { opacity: 1, transition: { staggerChildren: 0.05 } },
 }
 
 const cardVariants = {
-  hidden: { opacity: 0, y: 30, scale: 0.97 },
+  hidden: { opacity: 0, y: 24, scale: 0.97 },
   visible: { opacity: 1, y: 0, scale: 1, transition: { duration: 0.5, ease: 'easeOut' as const } },
 }
 
@@ -35,59 +35,32 @@ export default function Services() {
 
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative">
         <motion.div
-          initial={{ opacity: 0, y: 40 }}
+          initial={{ opacity: 0, y: 30 }}
           animate={inView ? { opacity: 1, y: 0 } : {}}
           transition={{ duration: 0.7 }}
           className="text-center mb-16"
         >
-          <motion.span
-            initial={{ scale: 0 }}
-            animate={inView ? { scale: 1 } : {}}
-            transition={{ type: 'spring', stiffness: 200, delay: 0.1 }}
-            className="badge-premium"
-          >
+          <motion.span initial={{ scale: 0 }} animate={inView ? { scale: 1 } : {}} transition={{ type: 'spring', stiffness: 200 }} className="section-badge">
             Servicios
           </motion.span>
-          <h2 className="section-title mt-4">Soluciones integrales en aluminio</h2>
+          <h2 className="section-title">Soluciones integrales en aluminio</h2>
           <p className="section-subtitle">De las ventanas a las estructuras metálicas, ofrecemos todo lo que necesita para su hogar o negocio en Mairena del Aljarafe.</p>
         </motion.div>
 
-        <motion.div
-          variants={containerVariants}
-          initial="hidden"
-          animate={inView ? 'visible' : 'hidden'}
-          className="grid sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-5"
-        >
+        <motion.div variants={containerVariants} initial="hidden" animate={inView ? 'visible' : 'hidden'} className="grid sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-5">
           {SERVICES.map((service) => (
-            <motion.div key={service.title} variants={cardVariants} whileHover={{ y: -8, transition: { duration: 0.3 } }} className="premium-card p-6 group cursor-default">
-              <motion.div
-                whileHover={{ scale: 1.1, rotate: 5 }}
-                className="w-12 h-12 rounded-xl flex items-center justify-center mb-4 transition-all duration-300"
-                style={{
-                  background: 'linear-gradient(135deg, rgba(245,158,11,0.1), rgba(245,158,11,0.03))',
-                }}
-              >
-                <service.icon className="w-6 h-6 text-accent" />
-              </motion.div>
-              <h3 className="font-heading font-bold text-primary text-lg mb-2 group-hover:text-accent transition-colors duration-300">{service.title}</h3>
-              <p className="text-secondary/60 text-sm leading-relaxed">{service.desc}</p>
-              <motion.div
-                initial={{ scaleX: 0 }}
-                whileHover={{ scaleX: 1 }}
-                className="h-0.5 rounded-full mt-4 origin-left"
-                style={{ background: 'linear-gradient(90deg, #F59E0B, transparent)' }}
-              />
+            <motion.div key={service.title} variants={cardVariants} whileHover={{ y: -6, transition: { duration: 0.3 } }} className="premium-card p-6 group cursor-default">
+              <div className="w-12 h-12 rounded-xl flex items-center justify-center mb-5 transition-all duration-300 group-hover:scale-110 group-hover:rotate-3" style={{ background: 'linear-gradient(135deg, rgba(245,158,11,0.1), rgba(245,158,11,0.03))' }}>
+                <service.icon className="w-5 h-5 text-accent" />
+              </div>
+              <h3 className="font-heading font-bold text-primary text-[15px] mb-2.5 group-hover:text-accent transition-colors duration-300 tracking-tight">{service.title}</h3>
+              <p className="body-sm">{service.desc}</p>
             </motion.div>
           ))}
         </motion.div>
 
-        <motion.div
-          initial={{ opacity: 0, y: 20 }}
-          animate={inView ? { opacity: 1, y: 0 } : {}}
-          transition={{ delay: 0.8 }}
-          className="text-center mt-12"
-        >
-          <motion.a href="#contacto" className="btn-primary" whileHover={{ scale: 1.03 }} whileTap={{ scale: 0.97 }}>
+        <motion.div initial={{ opacity: 0, y: 16 }} animate={inView ? { opacity: 1, y: 0 } : {}} transition={{ delay: 0.8 }} className="text-center mt-12">
+          <motion.a href="#contacto" className="btn-primary" whileHover={{ scale: 1.02 }} whileTap={{ scale: 0.98 }}>
             Solicitar presupuesto personalizado
           </motion.a>
         </motion.div>
