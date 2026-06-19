@@ -8,10 +8,6 @@ const GALLERY_IMAGES = [
   { src: 'https://res.cloudinary.com/dmuxgamms/image/upload/v1781883319/unnamed_5_dn7kxr.webp', alt: 'Ventanas de aluminio oscilobatientes modernas', title: 'Ventanas de aluminio' },
   { src: 'https://res.cloudinary.com/dmuxgamms/image/upload/v1781883318/unnamed_6_eel1sv.webp', alt: 'Puerta corredera de aluminio con vidrio', title: 'Puertas correderas' },
   { src: 'https://res.cloudinary.com/dmuxgamms/image/upload/v1781883317/unnamed_7_pkoxrd.webp', alt: 'Estructura metálica industrial', title: 'Estructuras metálicas' },
-  { src: 'https://images.unsplash.com/photo-1504917595217-d4dc5ebe6122?w=800&q=80', alt: 'Mampara de baño de aluminio y cristal', title: 'Mamparas de baño' },
-  { src: 'https://images.unsplash.com/photo-1541888946425-d81bbd297d3b?w=800&q=80', alt: 'Barandilla de aluminio moderna', title: 'Barandillas' },
-  { src: 'https://images.unsplash.com/photo-1618221118493-9cfa1a1c00da?w=800&q=80', alt: 'Techos móviles acristalados', title: 'Techos móviles' },
-  { src: 'https://images.unsplash.com/photo-1600585154340-be6161a56a0c?w=800&q=80', alt: 'Instalación profesional de carpintería metálica', title: 'Instalación profesional' },
 ]
 
 const containerVariants = {
@@ -42,7 +38,7 @@ export default function Gallery() {
           <p className="section-subtitle">Imágenes reales de instalaciones realizadas por nuestro equipo en Sevilla y el Aljarafe.</p>
         </motion.div>
 
-        <motion.div variants={containerVariants} initial="hidden" animate={inView ? 'visible' : 'hidden'} className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-3 md:gap-4">
+        <motion.div variants={containerVariants} initial="hidden" animate={inView ? 'visible' : 'hidden'} className="grid grid-cols-2 lg:grid-cols-4 gap-3 md:gap-4 max-w-3xl mx-auto">
           {GALLERY_IMAGES.map((img, index) => (
             <motion.div
               key={index}
