@@ -1,6 +1,6 @@
 import { motion } from 'framer-motion'
 import { useInView } from 'react-intersection-observer'
-import { HiStar } from 'react-icons/hi'
+import { HiStar, HiChatAlt2 } from 'react-icons/hi'
 
 const REVIEWS = [
   {
@@ -24,78 +24,112 @@ const REVIEWS = [
     rating: 5,
     service: 'Mamparas',
   },
-  {
-    name: 'Francisco Moreno',
-    location: 'San Juan de Aznalfarache',
-    text: 'Gran profesionalidad. Instalaron la estructura metálica de mi nave en tiempo récord. Calidad y seriedad. Sin duda, los mejores de la zona.',
-    rating: 5,
-    service: 'Estructuras metálicas',
-  },
-  {
-    name: 'Isabel Torres',
-    location: 'Sevilla',
-    text: 'Me hicieron un presupuesto muy competitivo para las mosquiteras. La instalación fue rápida y limpia. Llevo 3 meses con ellas y funcionan perfectamente.',
-    rating: 4,
-    service: 'Mosquiteras',
-  },
-  {
-    name: 'Javier Ruiz',
-    location: 'Camas',
-    text: 'Repararon unas ventanas que tenía muy deterioradas. Quedaron como nuevas. Precio justo y trabajo de calidad. Les doy un 10.',
-    rating: 5,
-    service: 'Reparaciones',
-  },
 ]
+
+const containerVariants = {
+  hidden: { opacity: 0 },
+  visible: { opacity: 1, transition: { staggerChildren: 0.12 } },
+}
+
+const cardVariants = {
+  hidden: { opacity: 0, y: 40 },
+  visible: { opacity: 1, y: 0, transition: { duration: 0.6, ease: 'easeOut' as const } },
+}
 
 export default function Testimonials() {
   const [ref, inView] = useInView({ triggerOnce: true, threshold: 0.1 })
 
   return (
-    <section ref={ref} className="py-24 bg-light relative overflow-hidden">
-      <div className="absolute top-0 right-0 w-80 h-80 bg-accent/5 rounded-full blur-3xl" />
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <motion.div initial={{ opacity: 0, y: 30 }} animate={inView ? { opacity: 1, y: 0 } : {}} transition={{ duration: 0.6 }} className="text-center mb-16">
-          <span className="text-accent font-semibold text-sm uppercase tracking-widest">Testimonios</span>
-          <h2 className="section-title mt-2">Lo que dicen nuestros clientes</h2>
+    <section ref={ref} className="py-28 relative overflow-hidden">
+      <div className="absolute inset-0" style={{ background: 'linear-gradient(180deg, #F8FAFC 0%, #FFFFFF 100%)' }} />
+      <div className="absolute -top-40 -right-40 w-[500px] h-[500px] rounded-full opacity-[0.04]" style={{ background: 'radial-gradient(circle, #F59E0B, transparent)' }} />
+
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative">
+        <motion.div
+          initial={{ opacity: 0, y: 40 }}
+          animate={inView ? { opacity: 1, y: 0 } : {}}
+          transition={{ duration: 0.7 }}
+          className="text-center mb-16"
+        >
+          <motion.span
+            initial={{ scale: 0 }}
+            animate={inView ? { scale: 1 } : {}}
+            transition={{ type: 'spring', stiffness: 200 }}
+            className="badge-premium"
+          >
+            <HiChatAlt2 className="w-3.5 h-3.5" />
+            Testimonios destacados
+          </motion.span>
+          <h2 className="section-title mt-4">Lo que dicen nuestros clientes</h2>
           <p className="section-subtitle">La satisfacción de nuestros clientes es nuestro mejor aval. Más de 18 años de experiencia nos respaldan.</p>
         </motion.div>
 
-        <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
+        <motion.div
+          variants={containerVariants}
+          initial="hidden"
+          animate={inView ? 'visible' : 'hidden'}
+          className="grid md:grid-cols-3 gap-6"
+        >
           {REVIEWS.map((review, index) => (
             <motion.div
               key={review.name}
-              initial={{ opacity: 0, y: 30 }}
-              animate={inView ? { opacity: 1, y: 0 } : {}}
-              transition={{ duration: 0.5, delay: index * 0.1 }}
-              className="bg-white p-6 rounded-2xl border border-gray-100 hover:shadow-xl hover:-translate-y-1 transition-all duration-300"
+              variants={cardVariants}
+              whileHover={{ y: -8 }}
+              className="premium-card p-6"
             >
-              <div className="flex gap-1 mb-3">
+              <div className="flex gap-1 mb-4">
                 {[...Array(5)].map((_, i) => (
-                  <HiStar key={i} className={`w-5 h-5 ${i < review.rating ? 'text-accent' : 'text-gray-200'}`} />
+                  <motion.div key={i} animate={inView ? { scale: [0, 1.2, 1] } : {}} transition={{ delay: 0.3 + i * 0.1 + index * 0.05 }}>
+                    <HiStar className={`w-5 h-5 ${i < review.rating ? 'text-accent' : 'text-gray-200'}`} />
+                  </motion.div>
                 ))}
               </div>
-              <p className="text-secondary/80 text-sm leading-relaxed mb-4">"{review.text}"</p>
-              <div className="pt-4 border-t border-gray-100">
-                <p className="font-heading font-bold text-primary">{review.name}</p>
-                <div className="flex items-center justify-between text-xs text-secondary/60 mt-1">
-                  <span>📍 {review.location}</span>
-                  <span className="bg-accent/10 text-accent font-semibold px-2 py-0.5 rounded-full">{review.service}</span>
+              <p className="text-secondary/75 text-sm leading-relaxed mb-4 italic border-l-2 border-accent/20 pl-4">&ldquo;{review.text}&rdquo;</p>
+              <div className="pt-4 border-t border-gray-50">
+                <div className="flex items-center gap-3">
+                  <div className="w-10 h-10 rounded-full flex items-center justify-center text-sm font-bold text-white flex-shrink-0" style={{ background: 'linear-gradient(135deg, #1F2937, #374151)' }}>
+                    {review.name.charAt(0)}
+                  </div>
+                  <div>
+                    <p className="font-heading font-bold text-primary text-sm">{review.name}</p>
+                    <div className="flex items-center gap-2 text-[11px] text-secondary/40">
+                      <span>{review.location}</span>
+                      <span>·</span>
+                      <span className="text-accent/70 font-semibold">{review.service}</span>
+                    </div>
+                  </div>
                 </div>
               </div>
             </motion.div>
           ))}
-        </div>
+        </motion.div>
 
-        <motion.div initial={{ opacity: 0 }} animate={inView ? { opacity: 1 } : {}} transition={{ delay: 0.8 }} className="text-center mt-12">
-          <div className="inline-flex items-center gap-4 bg-white px-8 py-4 rounded-2xl shadow-md">
+        <motion.div
+          initial={{ opacity: 0, y: 20 }}
+          animate={inView ? { opacity: 1, y: 0 } : {}}
+          transition={{ delay: 0.8 }}
+          className="text-center mt-12"
+        >
+          <motion.div
+            whileHover={{ scale: 1.02 }}
+            className="inline-flex items-center gap-4 px-8 py-4 rounded-2xl"
+            style={{
+              background: 'linear-gradient(135deg, rgba(245,158,11,0.06), rgba(245,158,11,0.02))',
+              border: '1.5px solid rgba(245,158,11,0.15)',
+            }}
+          >
             <div className="flex text-accent">
-              {[...Array(5)].map((_, i) => <HiStar key={i} className="w-6 h-6" />)}
+              {[...Array(5)].map((_, i) => (
+                <motion.div key={i} animate={{ rotate: [0, -5, 5, 0] }} transition={{ delay: i * 0.1, duration: 0.4 }}>
+                  <HiStar className="w-6 h-6" />
+                </motion.div>
+              ))}
             </div>
             <div className="text-left">
               <p className="font-heading font-bold text-primary text-lg">4.8 sobre 5</p>
-              <p className="text-secondary/60 text-sm">Basado en 18 opiniones de clientes</p>
+              <p className="text-secondary/50 text-sm">Basado en 18 opiniones de clientes</p>
             </div>
-          </div>
+          </motion.div>
         </motion.div>
       </div>
     </section>

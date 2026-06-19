@@ -1,7 +1,7 @@
 import Navbar from './components/Navbar'
 import Hero from './components/Hero'
 import Services from './components/Services'
-import Projects from './components/Projects'
+import Comments from './components/Comments'
 import Process from './components/Process'
 import Benefits from './components/Benefits'
 import Testimonials from './components/Testimonials'
@@ -17,7 +17,7 @@ export default function App() {
       <Navbar />
       <Hero />
       <Services />
-      <Projects />
+      <Comments />
       <Process />
       <Benefits />
       <Testimonials />

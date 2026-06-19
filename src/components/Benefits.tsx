@@ -11,45 +11,90 @@ const BENEFITS = [
   { icon: HiHeart, title: 'Atención cercana', desc: 'Trato directo con el propietario. Te acompañamos en todo el proceso con comunicación clara y transparente.' },
 ]
 
+const containerVariants = {
+  hidden: { opacity: 0 },
+  visible: { opacity: 1, transition: { staggerChildren: 0.1 } },
+}
+
+const itemVariants = {
+  hidden: { opacity: 0, x: -20 },
+  visible: { opacity: 1, x: 0, transition: { duration: 0.5, ease: 'easeOut' as const } },
+}
+
 export default function Benefits() {
   const [ref, inView] = useInView({ triggerOnce: true, threshold: 0.1 })
 
   return (
-    <section ref={ref} className="py-24 bg-white relative overflow-hidden">
-      <div className="absolute left-0 top-0 w-64 h-64 bg-accent/5 rounded-full -translate-x-1/2 -translate-y-1/2 blur-3xl" />
+    <section ref={ref} className="py-28 relative overflow-hidden" style={{ background: 'linear-gradient(180deg, #FFFFFF 0%, #F8FAFC 100%)' }}>
+      <div className="absolute left-0 top-1/2 w-[500px] h-[500px] rounded-full opacity-[0.03] -translate-x-1/2 -translate-y-1/2" style={{ background: 'radial-gradient(circle, #F59E0B, transparent)' }} />
+
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <motion.div initial={{ opacity: 0, y: 30 }} animate={inView ? { opacity: 1, y: 0 } : {}} transition={{ duration: 0.6 }} className="text-center mb-16">
-          <span className="text-accent font-semibold text-sm uppercase tracking-widest">Por qué elegirnos</span>
-          <h2 className="section-title mt-2">Tu mejor elección en carpintería metálica</h2>
-          <p className="section-subtitle">Nos diferenciamos por la calidad de nuestros materiales, la precisión en la instalación y el trato cercano.</p>
+        <motion.div
+          initial={{ opacity: 0, y: 40 }}
+          animate={inView ? { opacity: 1, y: 0 } : {}}
+          transition={{ duration: 0.7 }}
+          className="text-center mb-16"
+        >
+          <motion.span
+            initial={{ scale: 0 }}
+            animate={inView ? { scale: 1 } : {}}
+            transition={{ type: 'spring', stiffness: 200 }}
+            className="badge-premium"
+          >
+            Por qué elegirnos
+          </motion.span>
+          <h2 className="section-title mt-4">Tu mejor elección en carpintería metálica</h2>
+          <p className="section-subtitle">Nos diferenciamos por la calidad de nuestros materiales, la precisión en la instalación y el trato cercano y profesional.</p>
         </motion.div>
 
-        <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-8">
-          {BENEFITS.map((benefit, index) => (
+        <motion.div
+          variants={containerVariants}
+          initial="hidden"
+          animate={inView ? 'visible' : 'hidden'}
+          className="grid sm:grid-cols-2 lg:grid-cols-3 gap-8"
+        >
+          {BENEFITS.map((benefit) => (
             <motion.div
               key={benefit.title}
-              initial={{ opacity: 0, y: 30 }}
-              animate={inView ? { opacity: 1, y: 0 } : {}}
-              transition={{ duration: 0.5, delay: index * 0.1 }}
-              className="flex gap-5 group"
+              variants={itemVariants}
+              whileHover={{ x: 5 }}
+              className="flex gap-5 group p-5 rounded-2xl hover:bg-white transition-all duration-300 hover:shadow-lg"
             >
-              <div className="flex-shrink-0 w-14 h-14 bg-accent/10 rounded-xl flex items-center justify-center group-hover:bg-accent/20 group-hover:scale-110 transition-all duration-300">
+              <motion.div
+                whileHover={{ scale: 1.15, rotate: 5 }}
+                className="flex-shrink-0 w-14 h-14 rounded-xl flex items-center justify-center"
+                style={{
+                  background: 'linear-gradient(135deg, rgba(245,158,11,0.12), rgba(245,158,11,0.04))',
+                  border: '1px solid rgba(245,158,11,0.1)',
+                }}
+              >
                 <benefit.icon className="w-7 h-7 text-accent" />
-              </div>
-              <div>
-                <h3 className="font-heading font-bold text-primary text-lg mb-1.5">{benefit.title}</h3>
-                <p className="text-secondary/70 text-sm leading-relaxed">{benefit.desc}</p>
+              </motion.div>
+              <div className="flex-1">
+                <h3 className="font-heading font-bold text-primary text-lg mb-1.5 group-hover:text-accent transition-colors">{benefit.title}</h3>
+                <p className="text-secondary/60 text-sm leading-relaxed">{benefit.desc}</p>
               </div>
             </motion.div>
           ))}
-        </div>
+        </motion.div>
 
-        <motion.div initial={{ opacity: 0, y: 20 }} animate={inView ? { opacity: 1, y: 0 } : {}} transition={{ delay: 0.8 }} className="mt-16 bg-gradient-to-r from-primary to-secondary rounded-2xl p-8 md:p-12 text-center">
-          <h3 className="font-heading font-bold text-2xl md:text-3xl text-white mb-4">¿Listo para tu proyecto?</h3>
-          <p className="text-white/70 mb-6 max-w-lg mx-auto">Solicita tu presupuesto sin compromiso. Te responderemos en menos de 24 horas.</p>
-          <div className="flex flex-col sm:flex-row gap-4 justify-center">
-            <a href="tel:954768064" className="btn-phone">Llamar ahora</a>
-            <a href="#contacto" className="btn-primary">Pedir presupuesto</a>
+        <motion.div
+          initial={{ opacity: 0, y: 30 }}
+          animate={inView ? { opacity: 1, y: 0 } : {}}
+          transition={{ delay: 0.8 }}
+          className="mt-16 p-8 md:p-12 rounded-2xl text-center relative overflow-hidden"
+          style={{
+            background: 'linear-gradient(135deg, #1F2937, #374151)',
+          }}
+        >
+          <div className="absolute inset-0 opacity-[0.05]" style={{ backgroundImage: 'radial-gradient(circle at 30% 70%, #F59E0B, transparent 50%), radial-gradient(circle at 70% 30%, #F59E0B, transparent 50%)' }} />
+          <div className="relative z-10">
+            <h3 className="font-heading font-bold text-2xl md:text-3xl text-white mb-4">¿Listo para tu proyecto?</h3>
+            <p className="text-white/60 mb-6 max-w-lg mx-auto">Solicita tu presupuesto sin compromiso. Te responderemos en menos de 24 horas.</p>
+            <div className="flex flex-col sm:flex-row gap-4 justify-center">
+              <motion.a href="tel:954768064" className="btn-phone" whileHover={{ scale: 1.03 }} whileTap={{ scale: 0.97 }}>Llamar ahora</motion.a>
+              <motion.a href="#contacto" className="btn-primary" whileHover={{ scale: 1.03 }} whileTap={{ scale: 0.97 }}>Pedir presupuesto</motion.a>
+            </div>
           </div>
         </motion.div>
       </div>
